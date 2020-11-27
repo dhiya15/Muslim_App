@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Muslim App</string>
+    <string name="qurani">قرآني</string>
+    <string name="adkari">أذكاري</string>
+    <string name="kisas">قصص وعبر في الاسلام</string>
+    <string name="about">حول</string>
+    <string name="ajmi_hafs">احمد بن علي العجمي برواية حفص</string>
+    <string name="maher_hafs">ماهر المعيقلي برواية حفص</string>
+    <string name="basit_hafs">عبد الباسط عبد الصمد برواية حفص</string>
+    <string name="affasi_hafs">مشاري العفاسي برواية حفص</string>
+    <string name="basit_warch">عبد الباسط عبد الصمد برواية ورش</string>
+    <string name="ibrahim_warch">إبراهيم الدوسري برواية ورش</string>
+    <string name="yacine_warch">القارئ يـاسين برواية ورش</string>
+    <string name="listen">إستماع</string>
+    <string name="read">قراءة</string>
+    <string name="serach">إبحث</string>
+    <string name="download">تحميل</string>
+    <string name="pause">إيقاف مؤقت</string>
+    <string name="resume">إستمرار</string>
+    <string name="next">التالي</string>
+    <string name="previous">السابق</string>
+    <string name="stop">إيقاف نهائي</string>
+</resources>
