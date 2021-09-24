@@ -38,7 +38,7 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
 
     static ArrayList<Surah> suarList = new ArrayList<>();
     static ListView listView;
-    static String quari, quariUrl;
+    static String quari, quariUrl, qURL;
     static MediaPlayer mediaPlayer = new MediaPlayer();
     static Button btnPauseResume;
     static SeekBar seekBar;
@@ -48,13 +48,15 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of__sowar_and__media);
 
-        btnPauseResume = (Button) findViewById(R.id.btnPauseResume);
-        listView = (ListView) findViewById(R.id.listMedia);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
+        btnPauseResume = findViewById(R.id.btnPauseResume);
+        listView = findViewById(R.id.listMedia);
+        seekBar = findViewById(R.id.seekBar);
 
         Intent intent = getIntent();
         quari = intent.getStringExtra("Quari");
 
+        qURL = intent.getStringExtra("URL");
+        quariUrl = qURL;
         allSuwar();
 
     }
@@ -98,8 +100,7 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
             nextS = surahNumber + 1;
             prevS = surahNumber - 1;
             // Get the url of the quari from the server
-            String url = Constants.ROOT_URL + "/Quari/" + quari;
-            new MyAsynTask(this).execute(url, "2");
+            getUrl();
         }
     }
 
@@ -140,9 +141,7 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
 
     public void getUrl(){
         try {
-            JSONArray array = new JSONArray(jsonResult);
-            JSONObject obj = array.getJSONObject(0);
-            quariUrl = obj.getString("quariurl");
+            quariUrl = qURL;
             switch (number.length()){
                 case 1:
                     quariUrl += "00"+number;
@@ -196,15 +195,11 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
     public void download(int surahNumber){
         number = String.valueOf(surahNumber);
         // Get the url of the quari from the server
-        String url = Constants.ROOT_URL + "/Quari/" + quari;
-        new MyAsynTask(this).execute(url, "3");
+        getUrl2();
     }
 
     public void getUrl2(){
-        try {
-            JSONArray array = new JSONArray(jsonResult);
-            JSONObject obj = array.getJSONObject(0);
-            quariUrl = obj.getString("quariurl");
+        quariUrl = qURL;
             switch (number.length()){
                 case 1:
                     quariUrl += "00"+number;
@@ -217,9 +212,6 @@ public class List_of_Sowar_and_Media extends AppCompatActivity {
                     break;
             }
             downloadSurah(quariUrl);
-        } catch (JSONException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
     }
 
     public void downloadSurah(String url){
